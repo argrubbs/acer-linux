@@ -162,3 +162,55 @@ Verify `sudo` authentication in a new terminal window:
 ```bash
 sudo echo "Howdy authentication working!"
 ```
+
+---
+
+## 3. Audio Enhancement (EasyEffects Presets & IRS)
+
+The `easyeffects/` directory provides custom output presets and HeSuVi binaural impulse response (`.irs`) files for spatial surround sound and audio optimization.
+
+### Included Files
+
+- **Presets (`.json`):**
+  - `Perfect EQ.json` – 10-band equalizer curve tuned for balanced sound with enhanced low-end and high-end clarity (-2 dB input gain to prevent digital clipping).
+  - `HeSuVi Atmos.json` – Output chain utilizing the **Convolver** (with Dolby Atmos impulse response) and **Limiter** for virtual surround audio.
+- **Impulse Response Profiles (`.irs`):**
+  - `HeSuVi Atmos (True Stereo, 48kHz).irs` – Dolby Atmos binaural room impulse response (loaded by `HeSuVi Atmos.json`).
+  - `HeSuVi DS3D +++ (True Stereo, 48kHz).irs` – DirectSound 3D binaural impulse response.
+  - `HeSuVi DTS Headphone X (True Stereo, 48kHz).irs` – DTS Headphone:X binaural impulse response.
+
+### Installation & Usage
+
+Install EasyEffects if it is not already installed:
+
+```bash
+# Flatpak (Recommended)
+flatpak install flathub com.github.wwmm.easyeffects
+
+# Or via DNF
+sudo dnf install easyeffects
+```
+
+#### Option A: Copy Files to Configuration Directory (CLI)
+
+For **Flatpak** installation:
+```bash
+mkdir -p ~/.var/app/com.github.wwmm.easyeffects/config/easyeffects/{output,irs}
+cp easyeffects/*.json ~/.var/app/com.github.wwmm.easyeffects/config/easyeffects/output/
+cp easyeffects/*.irs ~/.var/app/com.github.wwmm.easyeffects/config/easyeffects/irs/
+```
+
+For **Native RPM / DNF** installation:
+```bash
+mkdir -p ~/.config/easyeffects/{output,irs}
+cp easyeffects/*.json ~/.config/easyeffects/output/
+cp easyeffects/*.irs ~/.config/easyeffects/irs/
+```
+
+#### Option B: Import via EasyEffects GUI
+
+1. Open **EasyEffects**.
+2. **Presets**: Select the **Presets** dropdown at the top, click the import icon, and choose `Perfect EQ.json` or `HeSuVi Atmos.json`.
+3. **IRS Files**: In the **Effects** pipeline, add or inspect the **Convolver** effect, click the impulse response menu, and import the `.irs` files into the convolver's impulse library.
+4. Load the desired preset and configure EasyEffects to start automatically at login.
+
