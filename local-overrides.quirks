@@ -1,0 +1,5 @@
+[PixArt PIXA4813 Pressure Pad Override]
+MatchUdevType=touchpad
+MatchName=PIXA4813*
+AttrInputProp=+INPUT_PROP_PRESSUREPAD
+AttrPressureRange=50:35
